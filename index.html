@@ -19,16 +19,15 @@ h1{font-size:1.6rem;margin-bottom:4px;color:#fff}
 .badge-approved{background:#10b98122;color:#10b981;border:1px solid #10b98144}
 .badge-posted{background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644}
 .badge-draft{background:#6b728022;color:#9ca3af;border:1px solid #6b728044}
+.badge-review{background:#8b5cf622;color:#a78bfa;border:1px solid #8b5cf644}
 .pillar{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-left:8px}
 .pillar-credibility{background:#8b5cf622;color:#a78bfa;border:1px solid #8b5cf644}
 .pillar-market{background:#ef444422;color:#f87171;border:1px solid #ef444444}
 .pillar-education{background:#06b6d422;color:#22d3ee;border:1px solid #06b6d444}
 .pillar-mindset{background:#f59e0b22;color:#fbbf24;border:1px solid #f59e0b44}
 .pillar-dealflow{background:#10b98122;color:#34d399;border:1px solid #10b98144}
-.post-image{width:100%;max-height:500px;object-fit:contain;background:#111}
 .post-caption{padding:20px;font-size:0.92rem;line-height:1.65;color:#d0d0d0;white-space:pre-line}
-.post-caption .hashtags{color:#666;font-size:0.82rem;margin-top:12px}
-.post-footer{padding:12px 20px;border-top:1px solid #2a2a2a;display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;color:#666}
+.hashtags{color:#666;font-size:0.82rem;margin-top:12px}
 .header-row{display:flex;align-items:center;gap:12px;margin-bottom:4px}
 .logo{width:32px;height:32px;background:linear-gradient(135deg,#1a472a,#2d8a4e);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:30px}
@@ -67,7 +66,30 @@ input[type="date"].schedule-input,input[type="time"].schedule-input{color-scheme
 .toast.error{background:#ef4444;color:#fff}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.schedule-row{flex-direction:column;align-items:flex-start}.btn-row{width:100%}.btn{flex:1;justify-content:center}}
+.vis{background:#0B1120;padding:28px;border-radius:0}
+.vis-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px}
+.vis h2{color:#fff;font-size:1.3rem;font-weight:800;margin-bottom:8px;line-height:1.3}
+.vis-sub{color:#9CA3AF;font-size:0.82rem;margin-bottom:20px}
+.vis-grid{display:grid;gap:12px;margin:16px 0}
+.vis-box{background:#131B2E;border-radius:10px;padding:16px}
+.vis-big{font-size:2.2rem;font-weight:800;line-height:1}
+.vis-label{font-size:0.78rem;color:#9CA3AF;margin-top:6px}
+.vis-row{display:flex;gap:10px;margin:12px 0}
+.vis-col{flex:1;border-radius:10px;padding:14px}
+.vis-col h4{font-size:0.82rem;font-weight:700;margin-bottom:8px}
+.vis-col p{font-size:0.75rem;color:#9CA3AF;margin:3px 0}
+.vis-timeline-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:14px}
+.vis-dot{width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.vis-tl-text h4{color:#fff;font-size:0.85rem;font-weight:700}
+.vis-tl-text p{font-size:0.75rem;color:#9CA3AF}
+.vis-footer{font-size:0.72rem;color:#4B5563;margin-top:16px;padding-top:12px;border-top:1px solid #1E293B}
+.vis-takeaway{background:#131B2E;border-radius:10px;padding:14px;margin-top:16px}
+.vis-takeaway h4{font-size:0.78rem;font-weight:700;margin-bottom:6px}
+.vis-takeaway p{font-size:0.82rem;color:#fff}
+.vis-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:0.78rem}
+.vis-table th{text-align:left;color:#9CA3AF;padding:8px 12px;background:#1E293B;font-weight:600}
+.vis-table td{padding:8px 12px;border-bottom:1px solid #1a1f30}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.schedule-row{flex-direction:column;align-items:flex-start}.btn-row{width:100%}.btn{flex:1;justify-content:center}.vis-row{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -80,238 +102,240 @@ input[type="date"].schedule-input,input[type="time"].schedule-input{color-scheme
 </div>
 
 <div class="stats">
-<div class="stat-card">
-<div class="stat-number">33</div>
-<div class="stat-label">Total Posts</div>
-</div>
-<div class="stat-card">
-<div class="stat-number" id="stat-posted">2</div>
-<div class="stat-label">Posted</div>
-</div>
-<div class="stat-card">
-<div class="stat-number" id="stat-pending">0</div>
-<div class="stat-label">Pending</div>
-</div>
-<div class="stat-card">
-<div class="stat-number">31</div>
-<div class="stat-label">Upcoming</div>
-</div>
+<div class="stat-card"><div class="stat-number">33</div><div class="stat-label">Total Posts</div></div>
+<div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Posted</div></div>
+<div class="stat-card"><div class="stat-number">5</div><div class="stat-label">Ready for Review</div></div>
+<div class="stat-card"><div class="stat-number">25</div><div class="stat-label">Upcoming</div></div>
 </div>
 
-<div class="section-title">Posted</div>
+<div class="section-title">Ready for Review (Week 2: Apr 28 - May 2)</div>
 
-<div class="post-card" style="opacity:0.6">
-<div class="post-header">
-<div>
-<span class="post-date">Wed, April 23</span>
-<span class="post-number"> | Post #2</span>
-</div>
-<div>
-<span class="badge badge-posted">Posted</span>
-<span class="pillar pillar-credibility">Credibility</span>
-</div>
-</div>
-<div class="post-caption" style="color:#888">$26B MSR hedging to private lending - career pivot post (posted Apr 24)</div>
-</div>
-
-<div class="post-card" style="opacity:0.6">
-<div class="post-header">
-<div>
-<span class="post-date">Tue, April 22</span>
-<span class="post-number"> | Post #1</span>
-</div>
-<div>
-<span class="badge badge-posted">Posted</span>
-<span class="pillar pillar-market">Market Pivot</span>
-</div>
-</div>
-<div class="post-caption" style="color:#888">S&amp;P 7,000 after 12% crash whiplash post (posted)</div>
-</div>
-
-<div class="section-title">Upcoming (Week 1-2)</div>
-
-<div class="post-card" style="opacity:0.5">
-<div class="post-header">
-<div><span class="post-date">Thu, April 24</span><span class="post-number"> | Post #3</span></div>
-<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-education">Education</span></div>
-</div>
-<div class="post-caption" style="color:#888">Private credit spectrum - not all the same</div>
-</div>
-
-<div class="post-card" style="opacity:0.5">
-<div class="post-header">
-<div><span class="post-date">Fri, April 25</span><span class="post-number"> | Post #4</span></div>
-<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-mindset">Investor Mindset</span></div>
-</div>
-<div class="post-caption" style="color:#888">Smart investors ask about downside first</div>
-</div>
-
-<div class="post-card" style="opacity:0.5">
+<!-- POST #5 -->
+<div class="post-card">
 <div class="post-header">
 <div><span class="post-date">Mon, April 28</span><span class="post-number"> | Post #5</span></div>
-<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-dealflow">Deal Flow</span></div>
+<div><span class="badge badge-review" id="badge-5">Ready for Review</span><span class="pillar pillar-dealflow">Deal Flow</span></div>
 </div>
-<div class="post-caption" style="color:#888">Double close - capital out/back in 3 days</div>
+<div class="vis">
+<div class="vis-badge" style="background:#10b98133;color:#34d399">DEAL FLOW</div>
+<h2>The 3-Day Capital Cycle</h2>
+<div class="vis-timeline-item"><div class="vis-dot" style="background:#10b981"></div><div class="vis-tl-text"><h4 style="color:#10b981">DAY 1 - Deal Review</h4><p>Title + Numbers + Escrow verification</p></div></div>
+<div class="vis-timeline-item"><div class="vis-dot" style="background:#10b981"></div><div class="vis-tl-text"><h4 style="color:#10b981">DAY 2 - Capital Deployed</h4><p>Wire funds into escrow</p></div></div>
+<div class="vis-timeline-item"><div class="vis-dot" style="background:#10b981"></div><div class="vis-tl-text"><h4 style="color:#10b981">DAY 3 - Capital Returned</h4><p>Transaction closes, capital comes back</p></div></div>
+<div class="vis-takeaway"><h4 style="color:#10b981">TRACK RECORD</h4><p><span style="font-size:1.5rem;font-weight:800;color:#10b981">100+</span> deals across <span style="font-size:1.5rem;font-weight:800;color:#10b981">25+</span> states</p></div>
 </div>
+<div class="post-caption">Here's how a typical double close works in our operation:
 
-<div class="post-card" style="opacity:0.5">
+Day 1: Borrower sends the deal. We review title, verify numbers, confirm escrow.
+Day 2: Capital wires into escrow.
+Day 3: Transaction closes. Capital comes back.
+
+Three days. Start to finish.
+
+This is what makes transactional lending fundamentally different from traditional real estate investing. Capital isn't locked up in a property for months or years. It flows through the transaction and returns.
+
+Over 100+ deals across 25+ states, this pattern repeats. The speed isn't a feature. It's the entire model.
+
+What's the longest you've had capital locked up in a single investment?
+
+<span class="hashtags">#PrivateLending #TransactionalLending #DoubleClose #RealEstateInvesting #CapitalDeployment</span></div>
+<div class="action-bar" id="action-5">
+<div class="schedule-row"><label>Post Date:</label><input type="date" class="schedule-input" id="date-5" value="2026-04-28"><label>Time (MT):</label><input type="time" class="schedule-input" id="time-5" value="08:00"></div>
+<div class="btn-row"><button class="btn btn-approve" id="approve-btn-5" onclick="approvePost(5)"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve</button><button class="btn btn-changes" onclick="openFeedback(5)">Needs Changes</button></div>
+</div></div>
+
+<!-- POST #6 -->
+<div class="post-card">
 <div class="post-header">
 <div><span class="post-date">Tue, April 29</span><span class="post-number"> | Post #6</span></div>
-<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-market">Market Pivot</span></div>
+<div><span class="badge badge-review" id="badge-6">Ready for Review</span><span class="pillar pillar-market">Market Pivot</span></div>
 </div>
-<div class="post-caption" style="color:#888">Blue Owl/KKR limiting BDC redemptions</div>
+<div class="vis">
+<div class="vis-badge" style="background:#ef444433;color:#f87171">MARKET PIVOT</div>
+<h2>BDC Liquidity Crunch</h2>
+<div class="vis-sub">Blue Owl &amp; KKR Limiting Redemptions</div>
+<div class="vis-row">
+<div class="vis-col" style="background:#1C1017"><div class="vis-big" style="color:#f87171">22%</div><div class="vis-label">of fund requested for withdrawal in Q1</div><div style="font-size:0.7rem;color:#4B5563;margin-top:8px">Blue Owl OCIC Fund</div></div>
+<div class="vis-col" style="background:#131B2E"><div class="vis-big" style="color:#fbbf24">5%</div><div class="vis-label">redemption cap imposed by fund</div><div style="font-size:0.7rem;color:#4B5563;margin-top:8px">Quarterly Limit</div></div>
 </div>
+<div class="vis-row">
+<div class="vis-col" style="background:#1C1017"><h4 style="color:#f87171">Long-Duration Credit</h4><p>Capital locked for years</p><p>Market-correlated assets</p><p>Gated redemptions</p></div>
+<div class="vis-col" style="background:#0C1A17"><h4 style="color:#34d399">Transactional Lending</h4><p>1-30 day duration</p><p>Zero market correlation</p><p>Capital cycles back</p></div>
+</div>
+<div class="vis-footer">Source: Blue Owl Q1 2026 filings, HedgeCo, CNBC</div>
+</div>
+<div class="post-caption">Blue Owl investors requested to withdraw nearly 22% of their BDC fund in a single quarter.
 
-<div class="post-card" style="opacity:0.5">
+The fund capped redemptions at 5%.
+
+KKR is doing the same with their BDC platform.
+
+This is what happens when private credit funds hold long-duration, market-correlated assets and investors all want out at the same time. The assets can't be unwound quickly enough to meet demand.
+
+It's a reminder that "private credit" is a massive umbrella. Some strategies lock your capital up for years with limited exit options. Others cycle capital through transactions in days.
+
+Duration and liquidity should be near the top of your due diligence checklist for any alternative investment.
+
+What questions do you ask about liquidity before committing capital?
+
+<span class="hashtags">#PrivateCredit #Liquidity #AlternativeInvestments #RiskManagement #BDC</span></div>
+<div class="action-bar" id="action-6">
+<div class="schedule-row"><label>Post Date:</label><input type="date" class="schedule-input" id="date-6" value="2026-04-29"><label>Time (MT):</label><input type="time" class="schedule-input" id="time-6" value="08:00"></div>
+<div class="btn-row"><button class="btn btn-approve" id="approve-btn-6" onclick="approvePost(6)"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve</button><button class="btn btn-changes" onclick="openFeedback(6)">Needs Changes</button></div>
+</div></div>
+
+<!-- POST #7 -->
+<div class="post-card">
 <div class="post-header">
 <div><span class="post-date">Wed, April 30</span><span class="post-number"> | Post #7</span></div>
-<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-education">Education</span></div>
+<div><span class="badge badge-review" id="badge-7">Ready for Review</span><span class="pillar pillar-education">Education</span></div>
 </div>
-<div class="post-caption" style="color:#888">Hard money vs transactional lending</div>
+<div class="vis">
+<div class="vis-badge" style="background:#06b6d433;color:#22d3ee">EDUCATION</div>
+<h2>Hard Money vs Transactional Lending</h2>
+<table class="vis-table">
+<tr><th>Factor</th><th style="color:#f87171">Hard Money</th><th style="color:#34d399">Transactional</th></tr>
+<tr><td style="color:#fff;font-weight:600">Duration</td><td style="color:#FCA5A5">6-18 months</td><td style="color:#6EE7B7">1-30 days</td></tr>
+<tr><td style="color:#fff;font-weight:600">Collateral</td><td style="color:#FCA5A5">Property value</td><td style="color:#6EE7B7">Escrow account</td></tr>
+<tr><td style="color:#fff;font-weight:600">Market Risk</td><td style="color:#FCA5A5">Exposed to declines</td><td style="color:#6EE7B7">Zero correlation</td></tr>
+<tr><td style="color:#fff;font-weight:600">Default Risk</td><td style="color:#FCA5A5">Borrower dependent</td><td style="color:#6EE7B7">Transaction-based</td></tr>
+<tr><td style="color:#fff;font-weight:600">Exit</td><td style="color:#FCA5A5">Foreclosure process</td><td style="color:#6EE7B7">Capital returns at close</td></tr>
+<tr><td style="color:#fff;font-weight:600">Capital Status</td><td style="color:#FCA5A5">Locked in asset</td><td style="color:#6EE7B7">Flows through deals</td></tr>
+</table>
+<div class="vis-takeaway"><h4 style="color:#22d3ee">KEY TAKEAWAY</h4><p>Same industry. Completely different risk profiles. Duration is the differentiator.</p></div>
 </div>
+<div class="post-caption">"Isn't this just hard money lending?"
 
-<div class="post-card" style="opacity:0.5">
+I get this question a lot. The answer matters more than you'd think.
+
+Hard money lending: Capital is lent against a property for 6-18 months. You're exposed to borrower default, property value decline, foreclosure timelines, and market shifts.
+
+Transactional lending: Capital goes into escrow for a specific closing. It comes back in 1-30 days. There's no long-term property exposure.
+
+Different duration. Different risk profile. Different model entirely.
+
+The confusion exists because both live under "private lending." But the risk characteristics aren't remotely the same.
+
+If you're evaluating private lending opportunities, duration should be your first question.
+
+What's the first thing you look at when evaluating a lending opportunity?
+
+<span class="hashtags">#PrivateLending #HardMoney #TransactionalLending #RiskManagement #RealEstateFinance</span></div>
+<div class="action-bar" id="action-7">
+<div class="schedule-row"><label>Post Date:</label><input type="date" class="schedule-input" id="date-7" value="2026-04-30"><label>Time (MT):</label><input type="time" class="schedule-input" id="time-7" value="08:00"></div>
+<div class="btn-row"><button class="btn btn-approve" id="approve-btn-7" onclick="approvePost(7)"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve</button><button class="btn btn-changes" onclick="openFeedback(7)">Needs Changes</button></div>
+</div></div>
+
+<!-- POST #8 -->
+<div class="post-card">
 <div class="post-header">
 <div><span class="post-date">Thu, May 1</span><span class="post-number"> | Post #8</span></div>
-<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-credibility">Credibility</span></div>
+<div><span class="badge badge-review" id="badge-8">Ready for Review</span><span class="pillar pillar-credibility">Credibility</span></div>
 </div>
-<div class="post-caption" style="color:#888">Career thread is risk management</div>
+<div class="vis">
+<div class="vis-badge" style="background:#8b5cf633;color:#a78bfa">CREDIBILITY</div>
+<h2>One Career Thread: Risk Management</h2>
+<div class="vis-timeline-item"><div class="vis-dot" style="background:#a78bfa"></div><div class="vis-tl-text"><h4>2003-2005 | Irwin Financial</h4><p>$26B MSR Hedge | Financial Analyst</p></div></div>
+<div class="vis-timeline-item"><div class="vis-dot" style="background:#a78bfa"></div><div class="vis-tl-text"><h4>2005-2008 | Travelers</h4><p>$300M Portfolio | 2VP, Product</p></div></div>
+<div class="vis-timeline-item"><div class="vis-dot" style="background:#a78bfa"></div><div class="vis-tl-text"><h4>2008-2013 | Zurich/Farmers</h4><p>$1.5B Personal Lines | Director</p></div></div>
+<div class="vis-timeline-item"><div class="vis-dot" style="background:#a78bfa"></div><div class="vis-tl-text"><h4>2013-2023 | AIG (Tokyo &amp; Singapore)</h4><p>$3B Auto &amp; Property | SVP / CUO</p></div></div>
+<div class="vis-timeline-item"><div class="vis-dot" style="background:#10b981"></div><div class="vis-tl-text"><h4 style="color:#10b981">2023-Now | Real Quick Funds</h4><p>100+ Deals, 25+ States | Founder</p></div></div>
+<div class="vis-takeaway" style="border-left:3px solid #10b981"><h4 style="color:#10b981">COMMON THREAD</h4><p>Same discipline at every stop. Different scale, same principles.</p></div>
 </div>
+<div class="post-caption">If there's one thread that connects every role I've held, it's risk management.
 
-<div class="post-card" style="opacity:0.5">
+Hedging a $26 billion mortgage portfolio at Irwin Financial. Running P&L on billion-dollar books at Travelers, Zurich, and AIG across the US, Japan, and Singapore.
+
+Every position required the same core skill: understanding what can go wrong and building systems to prevent it.
+
+That's exactly what I brought to transactional lending. Proper documentation. Escrow protection. Title verification on every deal. Underwriting discipline that doesn't cut corners.
+
+The institutional playbook works at every scale. The principles don't change because the deal size is different.
+
+What's the most valuable skill you've carried from one career into another?
+
+<span class="hashtags">#RiskManagement #CareerPivot #PrivateLending #InstitutionalDiscipline #Leadership</span></div>
+<div class="action-bar" id="action-8">
+<div class="schedule-row"><label>Post Date:</label><input type="date" class="schedule-input" id="date-8" value="2026-05-01"><label>Time (MT):</label><input type="time" class="schedule-input" id="time-8" value="08:00"></div>
+<div class="btn-row"><button class="btn btn-approve" id="approve-btn-8" onclick="approvePost(8)"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve</button><button class="btn btn-changes" onclick="openFeedback(8)">Needs Changes</button></div>
+</div></div>
+
+<!-- POST #9 -->
+<div class="post-card">
 <div class="post-header">
 <div><span class="post-date">Fri, May 2</span><span class="post-number"> | Post #9</span></div>
-<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-mindset">Investor Mindset</span></div>
+<div><span class="badge badge-review" id="badge-9">Ready for Review</span><span class="pillar pillar-mindset">Investor Mindset</span></div>
 </div>
-<div class="post-caption" style="color:#888">Real diversification</div>
+<div class="vis">
+<div class="vis-badge" style="background:#f59e0b33;color:#fbbf24">INVESTOR MINDSET</div>
+<h2>Is Your Portfolio Really Diversified?</h2>
+<div class="vis-sub">When the market drops 10%...</div>
+<div class="vis-row">
+<div class="vis-col" style="background:#1C1017;text-align:center"><h4 style="color:#fff">Stocks</h4><div class="vis-big" style="color:#f87171;font-size:1.5rem">-10%</div></div>
+<div class="vis-col" style="background:#1C1017;text-align:center"><h4 style="color:#fff">Bonds</h4><div class="vis-big" style="color:#f87171;font-size:1.5rem">-4%</div></div>
+<div class="vis-col" style="background:#1C1017;text-align:center"><h4 style="color:#fff">REITs</h4><div class="vis-big" style="color:#f87171;font-size:1.5rem">-8%</div></div>
+<div class="vis-col" style="background:#1C1017;text-align:center"><h4 style="color:#fff">Index</h4><div class="vis-big" style="color:#f87171;font-size:1.5rem">-9%</div></div>
+</div>
+<div style="text-align:center;color:#f87171;font-weight:700;font-size:0.85rem;margin:8px 0">Everything moves together. That's correlation.</div>
+<div class="vis-row">
+<div class="vis-col" style="background:#1C1017;text-align:center"><h4 style="color:#fff">Public Markets</h4><div class="vis-big" style="color:#f87171;font-size:1.5rem">-10%</div></div>
+<div class="vis-col" style="background:#0C1A17;text-align:center"><h4 style="color:#fff">Short-Duration Private Credit</h4><div style="color:#34d399;font-size:1.2rem;font-weight:800;margin-top:8px">Uncorrelated</div></div>
+</div>
+<div class="vis-takeaway"><h4 style="color:#fbbf24">THE REAL QUESTION</h4><p>How much of your portfolio is truly uncorrelated to public markets?</p></div>
+</div>
+<div class="post-caption">Most portfolios aren't as diversified as people think.
+
+You own stocks across sectors. Maybe some bonds. An index fund or two. Perhaps a REIT.
+
+But when the market drops 10%, everything moves together. That's correlation. And it's the enemy of real diversification.
+
+True diversification means owning assets that don't move with public markets at all. Assets where the return driver is completely disconnected from what the S&P does on any given day.
+
+That's what draws sophisticated investors to certain alternative strategies. Not chasing higher returns. Removing the correlation that makes a "diversified" portfolio drop in unison.
+
+When you look at your portfolio, how much of it is truly uncorrelated?
+
+<span class="hashtags">#Diversification #AlternativeInvestments #PortfolioStrategy #RiskManagement #InvestorMindset</span></div>
+<div class="action-bar" id="action-9">
+<div class="schedule-row"><label>Post Date:</label><input type="date" class="schedule-input" id="date-9" value="2026-05-02"><label>Time (MT):</label><input type="time" class="schedule-input" id="time-9" value="08:00"></div>
+<div class="btn-row"><button class="btn btn-approve" id="approve-btn-9" onclick="approvePost(9)"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve</button><button class="btn btn-changes" onclick="openFeedback(9)">Needs Changes</button></div>
+</div></div>
+
+<div class="section-title">Scheduled (This Week)</div>
+<div class="post-card" style="opacity:0.7">
+<div class="post-header"><div><span class="post-date">Fri, April 25</span><span class="post-number"> | Post #4</span></div><div><span class="badge badge-approved">Scheduled</span><span class="pillar pillar-mindset">Investor Mindset</span></div></div>
+<div class="post-caption" style="color:#aaa">Smart investors ask about downside first (scheduled noon MT)</div>
 </div>
 
-<div style="text-align:center;padding:40px 0;color:#444;font-size:0.8rem">
-Updated by Claude | Pinecone Capital LinkedIn Campaign 2026
+<div class="section-title">Posted (Week 1)</div>
+<div class="post-card" style="opacity:0.6">
+<div class="post-header"><div><span class="post-date">Thu, April 24</span><span class="post-number"> | Post #3</span></div><div><span class="badge badge-posted">Posted</span><span class="pillar pillar-education">Education</span></div></div>
+<div class="post-caption" style="color:#888">Private credit spectrum - not all the same</div>
+</div>
+<div class="post-card" style="opacity:0.6">
+<div class="post-header"><div><span class="post-date">Wed, April 23</span><span class="post-number"> | Post #2</span></div><div><span class="badge badge-posted">Posted</span><span class="pillar pillar-credibility">Credibility</span></div></div>
+<div class="post-caption" style="color:#888">$26B MSR hedging to private lending - career pivot post</div>
+</div>
+<div class="post-card" style="opacity:0.6">
+<div class="post-header"><div><span class="post-date">Tue, April 22</span><span class="post-number"> | Post #1</span></div><div><span class="badge badge-posted">Posted</span><span class="pillar pillar-market">Market Pivot</span></div></div>
+<div class="post-caption" style="color:#888">S&amp;P 7,000 after 12% crash whiplash post</div>
 </div>
 
-<!-- Feedback Modal -->
-<div class="modal-overlay" id="feedbackModal">
-<div class="modal">
-<h3 id="modal-title">Feedback for Post</h3>
-<textarea id="feedbackText" placeholder="What changes would you like? Be specific about caption edits, image changes, tone adjustments, etc."></textarea>
-<div class="modal-btns">
-<button class="btn btn-cancel" onclick="closeFeedback()">Cancel</button>
-<button class="btn btn-submit-changes" onclick="submitFeedback()">Submit Feedback</button>
-</div>
-</div>
-</div>
+<div style="text-align:center;padding:40px 0;color:#444;font-size:0.8rem">Updated by Claude | Pinecone Capital LinkedIn Campaign 2026</div>
 
-<!-- Toast -->
+<div class="modal-overlay" id="feedbackModal"><div class="modal"><h3 id="modal-title">Feedback for Post</h3><textarea id="feedbackText" placeholder="What changes would you like? Be specific about caption edits, image changes, tone adjustments, etc."></textarea><div class="modal-btns"><button class="btn btn-cancel" onclick="closeFeedback()">Cancel</button><button class="btn btn-submit-changes" onclick="submitFeedback()">Submit Feedback</button></div></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
-const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbymuZED3CoXHU0da2KvnlGy3Nbs7u-V8JYVX_D7VJc7Ui3iP2BPh_8oVVzfZykC8fgz/exec';
-let currentFeedbackPost = null;
-
-function showToast(msg, type) {
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show' + (type === 'warn' ? ' warn' : type === 'error' ? ' error' : '');
-  setTimeout(function() { t.className = 'toast'; }, 3500);
-}
-
-function approvePost(num) {
-  var date = document.getElementById('date-' + num).value;
-  var time = document.getElementById('time-' + num).value;
-  if (!date || !time) {
-    showToast('Please set a post date and time before approving.', 'warn');
-    return;
-  }
-  
-  var btn = document.getElementById('approve-btn-' + num);
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Approving...';
-  
-  fetch(WEBHOOK_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      postNumber: num,
-      action: 'approved',
-      date: date,
-      time: time,
-      feedback: ''
-    })
-  }).then(function() {
-    var badge = document.getElementById('badge-' + num);
-    if (badge) {
-      badge.textContent = 'Approved';
-      badge.className = 'badge badge-approved';
-    }
-    var actionBar = document.getElementById('action-' + num);
-    if (actionBar) {
-      actionBar.innerHTML = '<div style="padding:8px 0;text-align:center;color:#10b981;font-weight:600;">Approved for ' + date + ' at ' + time + ' MT</div>';
-    }
-    showToast('Post #' + num + ' approved and scheduled!', '');
-  }).catch(function(err) {
-    btn.disabled = false;
-    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve';
-    showToast('Error submitting approval. Try again.', 'error');
-  });
-}
-
-function openFeedback(num) {
-  currentFeedbackPost = num;
-  document.getElementById('modal-title').textContent = 'Feedback for Post #' + num;
-  document.getElementById('feedbackText').value = '';
-  document.getElementById('feedbackModal').classList.add('active');
-  document.getElementById('feedbackText').focus();
-}
-
-function closeFeedback() {
-  document.getElementById('feedbackModal').classList.remove('active');
-  currentFeedbackPost = null;
-}
-
-function submitFeedback() {
-  var feedback = document.getElementById('feedbackText').value.trim();
-  if (!feedback) {
-    showToast('Please describe the changes you want.', 'warn');
-    return;
-  }
-  var num = currentFeedbackPost;
-  var date = document.getElementById('date-' + num) ? document.getElementById('date-' + num).value : '';
-  var time = document.getElementById('time-' + num) ? document.getElementById('time-' + num).value : '';
-  
-  closeFeedback();
-  showToast('Submitting feedback...', 'warn');
-  
-  fetch(WEBHOOK_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      postNumber: num,
-      action: 'needs-changes',
-      date: date,
-      time: time,
-      feedback: feedback
-    })
-  }).then(function() {
-    var badge = document.getElementById('badge-' + num);
-    if (badge) {
-      badge.textContent = 'Changes Requested';
-      badge.className = 'badge badge-pending';
-    }
-    showToast('Feedback submitted for Post #' + num, 'warn');
-  }).catch(function(err) {
-    showToast('Error submitting feedback. Try again.', 'error');
-  });
-}
-
-document.getElementById('feedbackModal').addEventListener('click', function(e) {
-  if (e.target === this) closeFeedback();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeFeedback();
-});
+const WEBHOOK_URL='https://script.google.com/macros/s/AKfycbymuZED3CoXHU0da2KvnlGy3Nbs7u-V8JYVX_D7VJc7Ui3iP2BPh_8oVVzfZykC8fgz/exec';
+let currentFeedbackPost=null;
+function showToast(m,t){var e=document.getElementById('toast');e.textContent=m;e.className='toast show'+(t==='warn'?' warn':t==='error'?' error':'');setTimeout(function(){e.className='toast'},3500)}
+function approvePost(n){var d=document.getElementById('date-'+n).value,t=document.getElementById('time-'+n).value;if(!d||!t){showToast('Please set date and time before approving.','warn');return}var b=document.getElementById('approve-btn-'+n);b.disabled=true;b.innerHTML='<span class="spinner"></span> Approving...';fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({postNumber:n,action:'approve',date:d,time:t,feedback:''})}).then(function(){var bg=document.getElementById('badge-'+n);if(bg){bg.textContent='Approved';bg.className='badge badge-approved'}var ab=document.getElementById('action-'+n);if(ab){ab.innerHTML='<div style="padding:12px 0;text-align:center;color:#10b981;font-weight:600">Approved for '+d+' at '+t+' MT</div>'}showToast('Post #'+n+' approved and scheduled!','')}).catch(function(){b.disabled=false;b.innerHTML='<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve';showToast('Error. Try again.','error')})}
+function openFeedback(n){currentFeedbackPost=n;document.getElementById('modal-title').textContent='Feedback for Post #'+n;document.getElementById('feedbackText').value='';document.getElementById('feedbackModal').classList.add('active');document.getElementById('feedbackText').focus()}
+function closeFeedback(){document.getElementById('feedbackModal').classList.remove('active');currentFeedbackPost=null}
+function submitFeedback(){var f=document.getElementById('feedbackText').value.trim();if(!f){showToast('Please describe the changes.','warn');return}var n=currentFeedbackPost,d=document.getElementById('date-'+n)?document.getElementById('date-'+n).value:'',t=document.getElementById('time-'+n)?document.getElementById('time-'+n).value:'';closeFeedback();showToast('Submitting feedback...','warn');fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({postNumber:n,action:'needs-changes',date:d,time:t,feedback:f})}).then(function(){var bg=document.getElementById('badge-'+n);if(bg){bg.textContent='Changes Requested';bg.className='badge badge-pending'}showToast('Feedback submitted for Post #'+n,'warn')}).catch(function(){showToast('Error submitting feedback.','error')})}
+document.getElementById('feedbackModal').addEventListener('click',function(e){if(e.target===this)closeFeedback()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeFeedback()});
 </script>
 </body>
 </html>
