@@ -11,7 +11,7 @@ h1{font-size:1.6rem;margin-bottom:4px;color:#fff}
 .subtitle{color:#888;font-size:0.9rem;margin-bottom:30px}
 .post-card{background:#161616;border:1px solid #2a2a2a;border-radius:12px;margin-bottom:24px;overflow:hidden;transition:border-color 0.2s}
 .post-card:hover{border-color:#444}
-.post-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #2a2a2a}
+.post-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #2a2a2a;flex-wrap:wrap;gap:8px}
 .post-date{font-size:0.85rem;color:#aaa}
 .post-number{font-size:0.8rem;color:#666}
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
@@ -38,7 +38,41 @@ h1{font-size:1.6rem;margin-bottom:4px;color:#fff}
 .stat-number{font-size:1.4rem;font-weight:700;color:#fff}
 .stat-label{font-size:0.7rem;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-top:4px}
 .section-title{font-size:1.1rem;color:#fff;margin:30px 0 16px;padding-bottom:8px;border-bottom:1px solid #2a2a2a}
-@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.post-header{flex-wrap:wrap;gap:8px}}
+
+/* Action bar styles */
+.action-bar{padding:16px 20px;border-top:1px solid #2a2a2a;background:#1a1a1a}
+.schedule-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.schedule-row label{font-size:0.82rem;color:#aaa;font-weight:500}
+.schedule-input{background:#0a0a0a;border:1px solid #333;border-radius:8px;padding:8px 12px;color:#fff;font-size:0.85rem;font-family:inherit}
+.schedule-input:focus{outline:none;border-color:#3b82f6}
+input[type="date"].schedule-input,input[type="time"].schedule-input{color-scheme:dark}
+.btn-row{display:flex;gap:10px}
+.btn{padding:10px 24px;border-radius:8px;border:none;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:inherit;display:inline-flex;align-items:center;gap:6px}
+.btn-approve{background:#10b981;color:#fff}
+.btn-approve:hover{background:#059669;transform:translateY(-1px)}
+.btn-changes{background:transparent;color:#f59e0b;border:1px solid #f59e0b44}
+.btn-changes:hover{background:#f59e0b11;transform:translateY(-1px)}
+.btn svg{width:16px;height:16px;fill:currentColor}
+
+/* Feedback modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:100;justify-content:center;align-items:center}
+.modal-overlay.active{display:flex}
+.modal{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:24px;width:90%;max-width:500px}
+.modal h3{color:#fff;margin-bottom:16px;font-size:1rem}
+.modal textarea{width:100%;background:#0a0a0a;border:1px solid #333;border-radius:8px;padding:12px;color:#e0e0e0;font-size:0.9rem;font-family:inherit;min-height:120px;resize:vertical}
+.modal textarea:focus{outline:none;border-color:#f59e0b}
+.modal-btns{display:flex;gap:10px;margin-top:16px;justify-content:flex-end}
+.btn-cancel{background:#333;color:#aaa}
+.btn-cancel:hover{background:#444}
+.btn-submit-changes{background:#f59e0b;color:#000}
+.btn-submit-changes:hover{background:#d97706}
+
+/* Confirmation toast */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#10b981;color:#fff;padding:14px 28px;border-radius:10px;font-size:0.9rem;font-weight:500;opacity:0;transition:all 0.4s ease;z-index:200;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast.warn{background:#f59e0b;color:#000}
+
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.schedule-row{flex-direction:column;align-items:flex-start}.btn-row{width:100%}.btn{flex:1;justify-content:center}}
 </style>
 </head>
 <body>
@@ -71,14 +105,14 @@ h1{font-size:1.6rem;margin-bottom:4px;color:#fff}
 
 <div class="section-title">Pending Approval</div>
 
-<div class="post-card">
+<div class="post-card" id="post-2">
 <div class="post-header">
 <div>
 <span class="post-date">Wed, April 23</span>
 <span class="post-number"> | Post #2</span>
 </div>
 <div>
-<span class="badge badge-pending">Pending Approval</span>
+<span class="badge badge-pending" id="badge-2">Pending Approval</span>
 <span class="pillar pillar-credibility">Credibility</span>
 </div>
 </div>
@@ -107,12 +141,22 @@ The corporate playbook taught me how to manage risk at scale. Now I apply those 
 What's the biggest career pivot you've made, and what did your previous career teach you that still serves you today?
 
 <span class="hashtags">#CareerPivot #PrivateLending #RiskManagement #RealEstateInvesting #InstitutionalFinance</span></div>
-<div class="post-footer">
-<div class="schedule-time">
-<svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
-Scheduled: Apr 25, 10:00 AM MT
+<div class="action-bar" id="action-2">
+<div class="schedule-row">
+<label>Post date &amp; time (MT):</label>
+<input type="date" class="schedule-input" id="date-2" value="2026-04-25">
+<input type="time" class="schedule-input" id="time-2" value="10:00">
 </div>
-<div>LinkedIn</div>
+<div class="btn-row">
+<button class="btn btn-approve" onclick="approvePost(2)">
+<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+Approve
+</button>
+<button class="btn btn-changes" onclick="openFeedback(2)">
+<svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+Needs Changes
+</button>
+</div>
 </div>
 </div>
 
@@ -136,98 +180,56 @@ Scheduled: Apr 25, 10:00 AM MT
 
 <div class="post-card" style="opacity:0.5">
 <div class="post-header">
-<div>
-<span class="post-date">Thu, April 24</span>
-<span class="post-number"> | Post #3</span>
-</div>
-<div>
-<span class="badge badge-draft">Draft</span>
-<span class="pillar pillar-education">Education</span>
-</div>
+<div><span class="post-date">Thu, April 24</span><span class="post-number"> | Post #3</span></div>
+<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-education">Education</span></div>
 </div>
 <div class="post-caption" style="color:#888">Private credit spectrum - not all the same</div>
 </div>
 
 <div class="post-card" style="opacity:0.5">
 <div class="post-header">
-<div>
-<span class="post-date">Fri, April 25</span>
-<span class="post-number"> | Post #4</span>
-</div>
-<div>
-<span class="badge badge-draft">Draft</span>
-<span class="pillar pillar-mindset">Investor Mindset</span>
-</div>
+<div><span class="post-date">Fri, April 25</span><span class="post-number"> | Post #4</span></div>
+<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-mindset">Investor Mindset</span></div>
 </div>
 <div class="post-caption" style="color:#888">Smart investors ask about downside first</div>
 </div>
 
 <div class="post-card" style="opacity:0.5">
 <div class="post-header">
-<div>
-<span class="post-date">Mon, April 28</span>
-<span class="post-number"> | Post #5</span>
-</div>
-<div>
-<span class="badge badge-draft">Draft</span>
-<span class="pillar pillar-dealflow">Deal Flow</span>
-</div>
+<div><span class="post-date">Mon, April 28</span><span class="post-number"> | Post #5</span></div>
+<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-dealflow">Deal Flow</span></div>
 </div>
 <div class="post-caption" style="color:#888">Double close - capital out/back in 3 days</div>
 </div>
 
 <div class="post-card" style="opacity:0.5">
 <div class="post-header">
-<div>
-<span class="post-date">Tue, April 29</span>
-<span class="post-number"> | Post #6</span>
-</div>
-<div>
-<span class="badge badge-draft">Draft</span>
-<span class="pillar pillar-market">Market Pivot</span>
-</div>
+<div><span class="post-date">Tue, April 29</span><span class="post-number"> | Post #6</span></div>
+<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-market">Market Pivot</span></div>
 </div>
 <div class="post-caption" style="color:#888">Blue Owl/KKR limiting BDC redemptions</div>
 </div>
 
 <div class="post-card" style="opacity:0.5">
 <div class="post-header">
-<div>
-<span class="post-date">Wed, April 30</span>
-<span class="post-number"> | Post #7</span>
-</div>
-<div>
-<span class="badge badge-draft">Draft</span>
-<span class="pillar pillar-education">Education</span>
-</div>
+<div><span class="post-date">Wed, April 30</span><span class="post-number"> | Post #7</span></div>
+<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-education">Education</span></div>
 </div>
 <div class="post-caption" style="color:#888">Hard money vs transactional lending</div>
 </div>
 
 <div class="post-card" style="opacity:0.5">
 <div class="post-header">
-<div>
-<span class="post-date">Thu, May 1</span>
-<span class="post-number"> | Post #8</span>
-</div>
-<div>
-<span class="badge badge-draft">Draft</span>
-<span class="pillar pillar-credibility">Credibility</span>
-</div>
+<div><span class="post-date">Thu, May 1</span><span class="post-number"> | Post #8</span></div>
+<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-credibility">Credibility</span></div>
 </div>
 <div class="post-caption" style="color:#888">Career thread is risk management</div>
 </div>
 
 <div class="post-card" style="opacity:0.5">
 <div class="post-header">
-<div>
-<span class="post-date">Fri, May 2</span>
-<span class="post-number"> | Post #9</span>
-</div>
-<div>
-<span class="badge badge-draft">Draft</span>
-<span class="pillar pillar-mindset">Investor Mindset</span>
-</div>
+<div><span class="post-date">Fri, May 2</span><span class="post-number"> | Post #9</span></div>
+<div><span class="badge badge-draft">Draft</span><span class="pillar pillar-mindset">Investor Mindset</span></div>
 </div>
 <div class="post-caption" style="color:#888">Real diversification</div>
 </div>
@@ -235,5 +237,117 @@ Scheduled: Apr 25, 10:00 AM MT
 <div style="text-align:center;padding:40px 0;color:#444;font-size:0.8rem">
 Updated by Claude | Pinecone Capital LinkedIn Campaign 2026
 </div>
+
+<!-- Feedback Modal -->
+<div class="modal-overlay" id="feedbackModal">
+<div class="modal">
+<h3 id="modal-title">Feedback for Post #2</h3>
+<textarea id="feedbackText" placeholder="What changes would you like? Be specific about caption edits, image changes, tone adjustments, etc."></textarea>
+<div class="modal-btns">
+<button class="btn btn-cancel" onclick="closeFeedback()">Cancel</button>
+<button class="btn btn-submit-changes" onclick="submitFeedback()">Submit Feedback</button>
+</div>
+</div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+const REPO_OWNER = 'pmartbrown';
+const REPO_NAME = 'linkedin-content-queue';
+let currentFeedbackPost = null;
+
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type === 'warn' ? ' warn' : '');
+  setTimeout(() => t.className = 'toast', 3500);
+}
+
+function approvePost(num) {
+  const date = document.getElementById('date-' + num).value;
+  const time = document.getElementById('time-' + num).value;
+  if (!date || !time) {
+    showToast('Please set a post date and time before approving.', 'warn');
+    return;
+  }
+  const scheduleStr = date + ' at ' + time + ' MT';
+  const title = encodeURIComponent('APPROVED: Post #' + num);
+  const body = encodeURIComponent(
+    '## Post #' + num + ' - APPROVED\n\n' +
+    '**Schedule:** ' + scheduleStr + '\n\n' +
+    '**Action:** Please publish this post at the scheduled time.\n\n' +
+    '---\n_Submitted from the Content Queue dashboard_'
+  );
+  const labels = encodeURIComponent('approved');
+  const url = 'https://github.com/' + REPO_OWNER + '/' + REPO_NAME + '/issues/new?title=' + title + '&body=' + body + '&labels=' + labels;
+  
+  // Update UI optimistically
+  const badge = document.getElementById('badge-' + num);
+  if (badge) {
+    badge.textContent = 'Approved';
+    badge.className = 'badge badge-approved';
+  }
+  const actionBar = document.getElementById('action-' + num);
+  if (actionBar) {
+    actionBar.innerHTML = '<div style="padding:4px 0;text-align:center;color:#10b981;font-weight:600;">Approved for ' + scheduleStr + '</div>';
+  }
+  showToast('Opening GitHub to confirm approval...', '');
+  
+  // Small delay so toast shows before redirect
+  setTimeout(() => window.open(url, '_blank'), 600);
+}
+
+function openFeedback(num) {
+  currentFeedbackPost = num;
+  document.getElementById('modal-title').textContent = 'Feedback for Post #' + num;
+  document.getElementById('feedbackText').value = '';
+  document.getElementById('feedbackModal').classList.add('active');
+  document.getElementById('feedbackText').focus();
+}
+
+function closeFeedback() {
+  document.getElementById('feedbackModal').classList.remove('active');
+  currentFeedbackPost = null;
+}
+
+function submitFeedback() {
+  const feedback = document.getElementById('feedbackText').value.trim();
+  if (!feedback) {
+    showToast('Please describe the changes you want.', 'warn');
+    return;
+  }
+  const num = currentFeedbackPost;
+  const title = encodeURIComponent('CHANGES NEEDED: Post #' + num);
+  const body = encodeURIComponent(
+    '## Post #' + num + ' - Changes Requested\n\n' +
+    '**Feedback:**\n' + feedback + '\n\n' +
+    '---\n_Submitted from the Content Queue dashboard_'
+  );
+  const labels = encodeURIComponent('needs-changes');
+  const url = 'https://github.com/' + REPO_OWNER + '/' + REPO_NAME + '/issues/new?title=' + title + '&body=' + body + '&labels=' + labels;
+  
+  closeFeedback();
+  
+  const badge = document.getElementById('badge-' + num);
+  if (badge) {
+    badge.textContent = 'Changes Requested';
+    badge.className = 'badge badge-pending';
+  }
+  showToast('Opening GitHub to submit feedback...', 'warn');
+  setTimeout(() => window.open(url, '_blank'), 600);
+}
+
+// Close modal on overlay click
+document.getElementById('feedbackModal').addEventListener('click', function(e) {
+  if (e.target === this) closeFeedback();
+});
+
+// Close modal on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeFeedback();
+});
+</script>
 </body>
 </html>
