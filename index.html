@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Content Queue | Pinecone Capital</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0a0a;color:#e0e0e0;padding:20px;max-width:800px;margin:0 auto}
+h1{font-size:1.6rem;margin-bottom:4px;color:#fff}
+.subtitle{color:#888;font-size:0.9rem;margin-bottom:30px}
+.post-card{background:#161616;border:1px solid #2a2a2a;border-radius:12px;margin-bottom:24px;overflow:hidden;transition:border-color 0.2s}
+.post-card:hover{border-color:#444}
+.post-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #2a2a2a}
+.post-date{font-size:0.85rem;color:#aaa}
+.post-number{font-size:0.8rem;color:#666}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.badge-pending{background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44}
+.badge-approved{background:#10b98122;color:#10b981;border:1px solid #10b98144}
+.badge-posted{background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644}
+.badge-draft{background:#6b728022;color:#9ca3af;border:1px solid #6b728044}
+.pillar{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-left:8px}
+.pillar-credibility{background:#8b5cf622;color:#a78bfa;border:1px solid #8b5cf644}
+.pillar-market{background:#ef444422;color:#f87171;border:1px solid #ef444444}
+.pillar-education{background:#06b6d422;color:#22d3ee;border:1px solid #06b6d444}
+.pillar-mindset{background:#f59e0b22;color:#fbbf24;border:1px solid #f59e0b44}
+.pillar-dealflow{background:#10b98122;color:#34d399;border:1px solid #10b98144}
+.post-image{width:100%;max-height:500px;object-fit:contain;background:#111}
+.post-caption{padding:20px;font-size:0.92rem;line-height:1.65;color:#d0d0d0;white-space:pre-line}
+.post-caption .hashtags{color:#666;font-size:0.82rem;margin-top:12px}
+.post-footer{padding:12px 20px;border-top:1px solid #2a2a2a;display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;color:#666}
+.schedule-time{display:flex;align-items:center;gap:6px}
+.schedule-time svg{width:14px;height:14px;fill:#666}
+.header-row{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.logo{width:32px;height:32px;background:linear-gradient(135deg,#1a472a,#2d8a4e);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:30px}
+.stat-card{background:#161616;border:1px solid #2a2a2a;border-radius:10px;padding:14px;text-align:center}
+.stat-number{font-size:1.4rem;font-weight:700;color:#fff}
+.stat-label{font-size:0.7rem;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-top:4px}
+.section-title{font-size:1.1rem;color:#fff;margin:30px 0 16px;padding-bottom:8px;border-bottom:1px solid #2a2a2a}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.post-header{flex-wrap:wrap;gap:8px}}
+</style>
+</head>
+<body>
+<div class="header-row">
+<div class="logo">&#127794;</div>
+<div>
+<h1>LinkedIn Content Queue</h1>
+<div class="subtitle">Pinecone Capital | 45-Day Campaign (Apr 22 - Jun 5)</div>
+</div>
+</div>
+
+<div class="stats">
+<div class="stat-card">
+<div class="stat-number">33</div>
+<div class="stat-label">Total Posts</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">1</div>
+<div class="stat-label">Posted</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">1</div>
+<div class="stat-label">Pending</div>
+</div>
+<div class="stat-card">
+<div class="stat-number">31</div>
+<div class="stat-label">Upcoming</div>
+</div>
+</div>
+
+<div class="section-title">Pending Approval</div>
+
+<div class="post-card">
+<div class="post-header">
+<div>
+<span class="post-date">Wed, April 23</span>
+<span class="post-number"> | Post #2</span>
+</div>
+<div>
+<span class="badge badge-pending">Pending Approval</span>
+<span class="pillar pillar-credibility">Credibility</span>
+</div>
+</div>
+<img class="post-image" src="https://lh3.googleusercontent.com/d/1b7c63o8S07v7LKGTp4xd1AhzthPeKvyh" alt="Post 2 - AIG Corporate Background">
+<div class="post-caption">I used to hedge a $26 billion mortgage servicing rights portfolio.
+
+I ran P&amp;L for billion-dollar operations at one of the world's largest insurers.
+
+So when people ask why I left corporate America to build a private lending operation, here's my honest answer:
+
+I saw how the institutional world really works.
+
+The best risk-adjusted returns aren't always in the places retail investors are looking. The wealthiest institutions have entire teams dedicated to finding short-duration, secured lending opportunities that most people never see.
+
+I wanted to bring that same discipline, institutional risk management, proper documentation, escrow protection, to a market that desperately needed it: creative real estate transactions.
+
+Over the last 2+ years, we've deployed:
+&#9654; Roughly $15,000,000 across 100+ deals
+&#9654; 25+ states
+&#9654; Capital deployed, returned, and redeployed
+
+Not theory. Not a pitch deck promise. Actual capital at work.
+
+The corporate playbook taught me how to manage risk at scale. Now I apply those principles every single day.
+
+What's the biggest career pivot you've made, and what did your previous career teach you that still serves you today?
+
+<span class="hashtags">#CareerPivot #PrivateLending #RiskManagement #RealEstateInvesting #InstitutionalFinance</span></div>
+<div class="post-footer">
+<div class="schedule-time">
+<svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+Scheduled: Apr 25, 10:00 AM MT
+</div>
+<div>LinkedIn</div>
+</div>
+</div>
+
+<div class="section-title">Posted</div>
+
+<div class="post-card" style="opacity:0.6">
+<div class="post-header">
+<div>
+<span class="post-date">Tue, April 22</span>
+<span class="post-number"> | Post #1</span>
+</div>
+<div>
+<span class="badge badge-posted">Posted</span>
+<span class="pillar pillar-market">Market Pivot</span>
+</div>
+</div>
+<div class="post-caption" style="color:#888">S&amp;P 7,000 after 12% crash whiplash post (posted)</div>
+</div>
+
+<div class="section-title">Upcoming (Week 1-2)</div>
+
+<div class="post-card" style="opacity:0.5">
+<div class="post-header">
+<div>
+<span class="post-date">Thu, April 24</span>
+<span class="post-number"> | Post #3</span>
+</div>
+<div>
+<span class="badge badge-draft">Draft</span>
+<span class="pillar pillar-education">Education</span>
+</div>
+</div>
+<div class="post-caption" style="color:#888">Private credit spectrum - not all the same</div>
+</div>
+
+<div class="post-card" style="opacity:0.5">
+<div class="post-header">
+<div>
+<span class="post-date">Fri, April 25</span>
+<span class="post-number"> | Post #4</span>
+</div>
+<div>
+<span class="badge badge-draft">Draft</span>
+<span class="pillar pillar-mindset">Investor Mindset</span>
+</div>
+</div>
+<div class="post-caption" style="color:#888">Smart investors ask about downside first</div>
+</div>
+
+<div class="post-card" style="opacity:0.5">
+<div class="post-header">
+<div>
+<span class="post-date">Mon, April 28</span>
+<span class="post-number"> | Post #5</span>
+</div>
+<div>
+<span class="badge badge-draft">Draft</span>
+<span class="pillar pillar-dealflow">Deal Flow</span>
+</div>
+</div>
+<div class="post-caption" style="color:#888">Double close - capital out/back in 3 days</div>
+</div>
+
+<div class="post-card" style="opacity:0.5">
+<div class="post-header">
+<div>
+<span class="post-date">Tue, April 29</span>
+<span class="post-number"> | Post #6</span>
+</div>
+<div>
+<span class="badge badge-draft">Draft</span>
+<span class="pillar pillar-market">Market Pivot</span>
+</div>
+</div>
+<div class="post-caption" style="color:#888">Blue Owl/KKR limiting BDC redemptions</div>
+</div>
+
+<div class="post-card" style="opacity:0.5">
+<div class="post-header">
+<div>
+<span class="post-date">Wed, April 30</span>
+<span class="post-number"> | Post #7</span>
+</div>
+<div>
+<span class="badge badge-draft">Draft</span>
+<span class="pillar pillar-education">Education</span>
+</div>
+</div>
+<div class="post-caption" style="color:#888">Hard money vs transactional lending</div>
+</div>
+
+<div class="post-card" style="opacity:0.5">
+<div class="post-header">
+<div>
+<span class="post-date">Thu, May 1</span>
+<span class="post-number"> | Post #8</span>
+</div>
+<div>
+<span class="badge badge-draft">Draft</span>
+<span class="pillar pillar-credibility">Credibility</span>
+</div>
+</div>
+<div class="post-caption" style="color:#888">Career thread is risk management</div>
+</div>
+
+<div class="post-card" style="opacity:0.5">
+<div class="post-header">
+<div>
+<span class="post-date">Fri, May 2</span>
+<span class="post-number"> | Post #9</span>
+</div>
+<div>
+<span class="badge badge-draft">Draft</span>
+<span class="pillar pillar-mindset">Investor Mindset</span>
+</div>
+</div>
+<div class="post-caption" style="color:#888">Real diversification</div>
+</div>
+
+<div style="text-align:center;padding:40px 0;color:#444;font-size:0.8rem">
+Updated by Claude | Pinecone Capital LinkedIn Campaign 2026
+</div>
+</body>
+</html>
