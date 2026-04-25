@@ -66,6 +66,7 @@ input[type="date"].schedule-input,input[type="time"].schedule-input{color-scheme
 .toast.error{background:#ef4444;color:#fff}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+/* Visual preview cards */
 .vis{background:#0B1120;padding:28px;border-radius:0}
 .vis-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px}
 .vis h2{color:#fff;font-size:1.3rem;font-weight:800;margin-bottom:8px;line-height:1.3}
@@ -118,25 +119,44 @@ input[type="date"].schedule-input,input[type="time"].schedule-input{color-scheme
 </div>
 <div class="vis">
 <div class="vis-badge" style="background:#10b98133;color:#34d399">DEAL FLOW</div>
-<h2>The 3-Day Capital Cycle</h2>
-<div class="vis-timeline-item"><div class="vis-dot" style="background:#10b981"></div><div class="vis-tl-text"><h4 style="color:#10b981">DAY 1 - Deal Review</h4><p>Title + Numbers + Escrow verification</p></div></div>
-<div class="vis-timeline-item"><div class="vis-dot" style="background:#10b981"></div><div class="vis-tl-text"><h4 style="color:#10b981">DAY 2 - Capital Deployed</h4><p>Wire funds into escrow</p></div></div>
-<div class="vis-timeline-item"><div class="vis-dot" style="background:#10b981"></div><div class="vis-tl-text"><h4 style="color:#10b981">DAY 3 - Capital Returned</h4><p>Transaction closes, capital comes back</p></div></div>
-<div class="vis-takeaway"><h4 style="color:#10b981">TRACK RECORD</h4><p><span style="font-size:1.5rem;font-weight:800;color:#10b981">100+</span> deals across <span style="font-size:1.5rem;font-weight:800;color:#10b981">25+</span> states</p></div>
+<h2>Due Diligence vs Capital Exposure</h2>
+<div class="vis-sub">The distinction most people miss about transactional lending</div>
+<div class="vis-row">
+<div class="vis-col" style="background:#131B2E;flex:2">
+<h4 style="color:#a78bfa;margin-bottom:10px">DUE DILIGENCE PHASE</h4>
+<p style="color:#fff;font-size:0.85rem">Review deal. Verify numbers.</p>
+<p style="color:#fff;font-size:0.85rem">Confirm escrow. Check title.</p>
+<p style="color:#fff;font-size:0.85rem">Run underwriting.</p>
+<div style="margin-top:12px;padding:10px;background:#1E293B;border-radius:8px;text-align:center">
+<div style="color:#a78bfa;font-size:1.6rem;font-weight:800">Weeks to Months</div>
+<div style="color:#9CA3AF;font-size:0.75rem;margin-top:4px">Never rushed. Takes as long as it needs.</div>
 </div>
-<div class="post-caption">Here's how a typical double close works in our operation:
+</div>
+<div class="vis-col" style="background:#0C1A17;flex:1">
+<h4 style="color:#10b981;margin-bottom:10px">CAPITAL EXPOSURE</h4>
+<p style="color:#fff;font-size:0.85rem">Fund the deal.</p>
+<p style="color:#fff;font-size:0.85rem">Capital returns same day or next.</p>
+<div style="margin-top:12px;padding:10px;background:#132E1C;border-radius:8px;text-align:center">
+<div style="color:#10b981;font-size:1.6rem;font-weight:800">Hours</div>
+<div style="color:#9CA3AF;font-size:0.75rem;margin-top:4px">Measured in hours, not months.</div>
+</div>
+</div>
+</div>
+<div class="vis-takeaway"><h4 style="color:#10b981">KEY DISTINCTION</h4><p>Long, thorough diligence. Extremely short capital deployment. That's the model.</p></div>
+</div>
+<div class="post-caption">A borrower sends in a deal. We review it. Verify the numbers. Confirm escrow. Check title. Run our underwriting.
 
-Day 1: Borrower sends the deal. We review title, verify numbers, confirm escrow.
-Day 2: Capital wires into escrow.
-Day 3: Transaction closes. Capital comes back.
+Sometimes that takes a week. Sometimes it takes months. We don't rush due diligence.
 
-Three days. Start to finish.
+But here's what most people don't understand about transactional lending: the capital exposure window is incredibly short.
 
-This is what makes transactional lending fundamentally different from traditional real estate investing. Capital isn't locked up in a property for months or years. It flows through the transaction and returns.
+Once all settlement statements are signed off and BC funding is confirmed in escrow, we fund the deal. Capital comes back that same day or the next, depending on closing timing.
 
-Over 100+ deals across 25+ states, this pattern repeats. The speed isn't a feature. It's the entire model.
+The due diligence takes as long as it needs to. The actual capital deployment? Measured in hours, not months.
 
-What's the longest you've had capital locked up in a single investment?
+That's the distinction that makes this model fundamentally different from traditional real estate lending.
+
+How long is your capital typically exposed to market volatility?
 
 <span class="hashtags">#PrivateLending #TransactionalLending #DoubleClose #RealEstateInvesting #CapitalDeployment</span></div>
 <div class="action-bar" id="action-5">
@@ -301,6 +321,7 @@ When you look at your portfolio, how much of it is truly uncorrelated?
 <div class="btn-row"><button class="btn btn-approve" id="approve-btn-9" onclick="approvePost(9)"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve</button><button class="btn btn-changes" onclick="openFeedback(9)">Needs Changes</button></div>
 </div></div>
 
+<!-- POSTED & SCHEDULED -->
 <div class="section-title">Scheduled (This Week)</div>
 <div class="post-card" style="opacity:0.7">
 <div class="post-header"><div><span class="post-date">Fri, April 25</span><span class="post-number"> | Post #4</span></div><div><span class="badge badge-approved">Scheduled</span><span class="pillar pillar-mindset">Investor Mindset</span></div></div>
