@@ -18,7 +18,6 @@ h1{font-size:1.6rem;margin-bottom:4px;color:#fff}
 .badge-pending{background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44}
 .badge-approved{background:#10b98122;color:#10b981;border:1px solid #10b98144}
 .badge-posted{background:#3b82f622;color:#3b82f6;border:1px solid #3b82f644}
-.badge-draft{background:#6b728022;color:#9ca3af;border:1px solid #6b728044}
 .badge-review{background:#8b5cf622;color:#a78bfa;border:1px solid #8b5cf644}
 .pillar{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-left:8px}
 .pillar-credibility{background:#8b5cf622;color:#a78bfa;border:1px solid #8b5cf644}
@@ -26,6 +25,7 @@ h1{font-size:1.6rem;margin-bottom:4px;color:#fff}
 .pillar-education{background:#06b6d422;color:#22d3ee;border:1px solid #06b6d444}
 .pillar-mindset{background:#f59e0b22;color:#fbbf24;border:1px solid #f59e0b44}
 .pillar-dealflow{background:#10b98122;color:#34d399;border:1px solid #10b98144}
+.post-image{width:100%;display:block}
 .post-caption{padding:20px;font-size:0.92rem;line-height:1.65;color:#d0d0d0;white-space:pre-line}
 .hashtags{color:#666;font-size:0.82rem;margin-top:12px}
 .header-row{display:flex;align-items:center;gap:12px;margin-bottom:4px}
@@ -49,6 +49,7 @@ input[type="date"].schedule-input,input[type="time"].schedule-input{color-scheme
 .btn-changes{background:transparent;color:#f59e0b;border:1px solid #f59e0b44}
 .btn-changes:hover{background:#f59e0b11;transform:translateY(-1px)}
 .btn svg{width:16px;height:16px;fill:currentColor}
+.approved-msg{padding:12px 0;text-align:center;color:#10b981;font-weight:600;font-size:0.9rem}
 .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:100;justify-content:center;align-items:center}
 .modal-overlay.active{display:flex}
 .modal{background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:24px;width:90%;max-width:500px}
@@ -66,31 +67,7 @@ input[type="date"].schedule-input,input[type="time"].schedule-input{color-scheme
 .toast.error{background:#ef4444;color:#fff}
 .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-/* Visual preview cards */
-.vis{background:#0B1120;padding:28px;border-radius:0}
-.vis-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px}
-.vis h2{color:#fff;font-size:1.3rem;font-weight:800;margin-bottom:8px;line-height:1.3}
-.vis-sub{color:#9CA3AF;font-size:0.82rem;margin-bottom:20px}
-.vis-grid{display:grid;gap:12px;margin:16px 0}
-.vis-box{background:#131B2E;border-radius:10px;padding:16px}
-.vis-big{font-size:2.2rem;font-weight:800;line-height:1}
-.vis-label{font-size:0.78rem;color:#9CA3AF;margin-top:6px}
-.vis-row{display:flex;gap:10px;margin:12px 0}
-.vis-col{flex:1;border-radius:10px;padding:14px}
-.vis-col h4{font-size:0.82rem;font-weight:700;margin-bottom:8px}
-.vis-col p{font-size:0.75rem;color:#9CA3AF;margin:3px 0}
-.vis-timeline-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:14px}
-.vis-dot{width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:3px}
-.vis-tl-text h4{color:#fff;font-size:0.85rem;font-weight:700}
-.vis-tl-text p{font-size:0.75rem;color:#9CA3AF}
-.vis-footer{font-size:0.72rem;color:#4B5563;margin-top:16px;padding-top:12px;border-top:1px solid #1E293B}
-.vis-takeaway{background:#131B2E;border-radius:10px;padding:14px;margin-top:16px}
-.vis-takeaway h4{font-size:0.78rem;font-weight:700;margin-bottom:6px}
-.vis-takeaway p{font-size:0.82rem;color:#fff}
-.vis-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:0.78rem}
-.vis-table th{text-align:left;color:#9CA3AF;padding:8px 12px;background:#1E293B;font-weight:600}
-.vis-table td{padding:8px 12px;border-bottom:1px solid #1a1f30}
-@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.schedule-row{flex-direction:column;align-items:flex-start}.btn-row{width:100%}.btn{flex:1;justify-content:center}.vis-row{flex-direction:column}}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.schedule-row{flex-direction:column;align-items:flex-start}.btn-row{width:100%}.btn{flex:1;justify-content:center}}
 </style>
 </head>
 <body>
@@ -104,33 +81,20 @@ input[type="date"].schedule-input,input[type="time"].schedule-input{color-scheme
 
 <div class="stats">
 <div class="stat-card"><div class="stat-number">33</div><div class="stat-label">Total Posts</div></div>
-<div class="stat-card"><div class="stat-number">4</div><div class="stat-label">Posted</div></div>
-<div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Ready for Review</div></div>
+<div class="stat-card"><div class="stat-number" id="stat-posted">4</div><div class="stat-label">Posted</div></div>
+<div class="stat-card"><div class="stat-number" id="stat-review">3</div><div class="stat-label">Ready for Review</div></div>
 <div class="stat-card"><div class="stat-number">26</div><div class="stat-label">Upcoming</div></div>
 </div>
 
 <div class="section-title">Ready for Review (Week 2: Apr 28, 30, May 2)</div>
 
 <!-- POST #5 - Hard Money vs Transactional -->
-<div class="post-card">
+<div class="post-card" id="card-5">
 <div class="post-header">
 <div><span class="post-date">Mon, April 28</span><span class="post-number"> | Post #5</span></div>
 <div><span class="badge badge-review" id="badge-5">Ready for Review</span><span class="pillar pillar-education">Education</span></div>
 </div>
-<div class="vis">
-<div class="vis-badge" style="background:#06b6d433;color:#22d3ee">EDUCATION</div>
-<h2>Hard Money vs Transactional Lending</h2>
-<table class="vis-table">
-<tr><th>Factor</th><th style="color:#f87171">Hard Money</th><th style="color:#34d399">Transactional</th></tr>
-<tr><td style="color:#fff;font-weight:600">Duration</td><td style="color:#FCA5A5">6-18 months</td><td style="color:#6EE7B7">1-30 days</td></tr>
-<tr><td style="color:#fff;font-weight:600">Collateral</td><td style="color:#FCA5A5">Property value</td><td style="color:#6EE7B7">Escrow account</td></tr>
-<tr><td style="color:#fff;font-weight:600">Market Risk</td><td style="color:#FCA5A5">Exposed to declines</td><td style="color:#6EE7B7">Zero correlation</td></tr>
-<tr><td style="color:#fff;font-weight:600">Default Risk</td><td style="color:#FCA5A5">Borrower dependent</td><td style="color:#6EE7B7">Transaction-based</td></tr>
-<tr><td style="color:#fff;font-weight:600">Exit</td><td style="color:#FCA5A5">Foreclosure process</td><td style="color:#6EE7B7">Capital returns at close</td></tr>
-<tr><td style="color:#fff;font-weight:600">Capital Status</td><td style="color:#FCA5A5">Locked in asset</td><td style="color:#6EE7B7">Flows through deals</td></tr>
-</table>
-<div class="vis-takeaway"><h4 style="color:#22d3ee">KEY TAKEAWAY</h4><p>Same industry. Completely different risk profiles. Duration is the differentiator.</p></div>
-</div>
+<img class="post-image" src="post5_hard_money_vs_transactional.png" alt="Hard Money vs Transactional Lending comparison">
 <div class="post-caption">"Isn't this just hard money lending?"
 
 I get this question a lot. The answer matters more than you'd think.
@@ -154,21 +118,12 @@ What's the first thing you look at when evaluating a lending opportunity?
 </div></div>
 
 <!-- POST #6 - Risk Management Career -->
-<div class="post-card">
+<div class="post-card" id="card-6">
 <div class="post-header">
 <div><span class="post-date">Wed, April 30</span><span class="post-number"> | Post #6</span></div>
 <div><span class="badge badge-review" id="badge-6">Ready for Review</span><span class="pillar pillar-credibility">Credibility</span></div>
 </div>
-<div class="vis">
-<div class="vis-badge" style="background:#8b5cf633;color:#a78bfa">CREDIBILITY</div>
-<h2>One Career Thread: Risk Management</h2>
-<div class="vis-timeline-item"><div class="vis-dot" style="background:#a78bfa"></div><div class="vis-tl-text"><h4>2003-2005 | Irwin Financial</h4><p>$26B MSR Hedge | Financial Analyst</p></div></div>
-<div class="vis-timeline-item"><div class="vis-dot" style="background:#a78bfa"></div><div class="vis-tl-text"><h4>2005-2008 | Travelers</h4><p>$300M Portfolio | VP, Product</p></div></div>
-<div class="vis-timeline-item"><div class="vis-dot" style="background:#a78bfa"></div><div class="vis-tl-text"><h4>2008-2013 | Zurich/Farmers</h4><p>$1.5B Personal Lines | Director/CUO</p></div></div>
-<div class="vis-timeline-item"><div class="vis-dot" style="background:#a78bfa"></div><div class="vis-tl-text"><h4>2013-2023 | AIG (Tokyo &amp; Singapore)</h4><p>$3B Auto &amp; Property | CUO/Board Member</p></div></div>
-<div class="vis-timeline-item"><div class="vis-dot" style="background:#10b981"></div><div class="vis-tl-text"><h4 style="color:#10b981">2023-Now | Real Quick Funds</h4><p>100+ Deals, 25+ States | Founder</p></div></div>
-<div class="vis-takeaway" style="border-left:3px solid #10b981"><h4 style="color:#10b981">COMMON THREAD</h4><p>Same discipline at every stop. Different scale, same principles.</p></div>
-</div>
+<img class="post-image" src="post6_risk_career.png" alt="Risk Management Career Timeline">
 <div class="post-caption">If there's one thread that connects every role I've held, it's risk management.
 
 Hedging a $26 billion mortgage portfolio at Irwin Financial. Running P&amp;L on billion-dollar books of business at Travelers, Zurich, and AIG across the US and international footprints.
@@ -187,40 +142,13 @@ What's the most valuable skill you've carried from one career into another?
 <div class="btn-row"><button class="btn btn-approve" id="approve-btn-6" onclick="approvePost(6)"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve</button><button class="btn btn-changes" onclick="openFeedback(6)">Needs Changes</button></div>
 </div></div>
 
-<!-- POST #7 - Liquidity & Duration (rewritten BDC) -->
-<div class="post-card">
+<!-- POST #7 - Liquidity & Duration -->
+<div class="post-card" id="card-7">
 <div class="post-header">
 <div><span class="post-date">Fri, May 2</span><span class="post-number"> | Post #7</span></div>
 <div><span class="badge badge-review" id="badge-7">Ready for Review</span><span class="pillar pillar-market">Market Pivot</span></div>
 </div>
-<div class="vis">
-<div class="vis-badge" style="background:#ef444433;color:#f87171">MARKET PIVOT</div>
-<h2>When Investors Want Out</h2>
-<div class="vis-sub">The liquidity question every alternative investor should ask</div>
-<div class="vis-row">
-<div class="vis-col" style="background:#1C1017">
-<h4 style="color:#f87171;margin-bottom:10px">LONG-DURATION FUNDS</h4>
-<p style="color:#fff;font-size:0.85rem">Capital locked for years</p>
-<p style="color:#fff;font-size:0.85rem">Illiquid underlying assets</p>
-<p style="color:#fff;font-size:0.85rem">Gated redemptions</p>
-<div style="margin-top:12px;padding:10px;background:#2A1520;border-radius:8px;text-align:center">
-<div style="color:#f87171;font-size:1.1rem;font-weight:800">"We'll get back to you."</div>
-<div style="color:#9CA3AF;font-size:0.75rem;margin-top:4px">Redemption requests exceed what the fund can honor</div>
-</div>
-</div>
-<div class="vis-col" style="background:#0C1A17">
-<h4 style="color:#34d399;margin-bottom:10px">SHORT-DURATION STRATEGIES</h4>
-<p style="color:#fff;font-size:0.85rem">Capital cycles in days</p>
-<p style="color:#fff;font-size:0.85rem">Transaction-based returns</p>
-<p style="color:#fff;font-size:0.85rem">No lock-up mismatch</p>
-<div style="margin-top:12px;padding:10px;background:#132E1C;border-radius:8px;text-align:center">
-<div style="color:#34d399;font-size:1.1rem;font-weight:800">Capital flows through deals</div>
-<div style="color:#9CA3AF;font-size:0.75rem;margin-top:4px">Duration matches the strategy</div>
-</div>
-</div>
-</div>
-<div class="vis-takeaway"><h4 style="color:#f87171">THE QUESTION</h4><p>Before you invest: what happens when you want your money back?</p></div>
-</div>
+<img class="post-image" src="post7_liquidity_duration.png" alt="When Investors Want Out - Liquidity comparison">
 <div class="post-caption">Some private credit funds are seeing quarterly redemption requests that far exceed what they can actually honor.
 
 Investors want out. The fund gates withdrawals at a fraction of what's been requested. Capital stays locked.
@@ -239,24 +167,25 @@ What's the first question you ask about liquidity before committing capital?
 <div class="btn-row"><button class="btn btn-approve" id="approve-btn-7" onclick="approvePost(7)"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve</button><button class="btn btn-changes" onclick="openFeedback(7)">Needs Changes</button></div>
 </div></div>
 
-<!-- BUMPED TO UPCOMING -->
+<!-- BUMPED -->
 <div class="section-title">Bumped to Week 3+</div>
 <div class="post-card" style="opacity:0.7">
-<div class="post-header"><div><span class="post-date">TBD</span><span class="post-number"> | Upcoming</span></div><div><span class="badge badge-draft">Bumped</span><span class="pillar pillar-dealflow">Deal Flow</span></div></div>
+<div class="post-header"><div><span class="post-date">TBD</span><span class="post-number"> | Upcoming</span></div><div><span class="badge" style="background:#6b728022;color:#9ca3af;border:1px solid #6b728044">Bumped</span><span class="pillar pillar-dealflow">Deal Flow</span></div></div>
 <div class="post-caption" style="color:#aaa">Due Diligence vs Capital Exposure - the distinction that makes transactional lending different</div>
 </div>
 <div class="post-card" style="opacity:0.7">
-<div class="post-header"><div><span class="post-date">TBD</span><span class="post-number"> | Upcoming</span></div><div><span class="badge badge-draft">Bumped</span><span class="pillar pillar-mindset">Investor Mindset</span></div></div>
+<div class="post-header"><div><span class="post-date">TBD</span><span class="post-number"> | Upcoming</span></div><div><span class="badge" style="background:#6b728022;color:#9ca3af;border:1px solid #6b728044">Bumped</span><span class="pillar pillar-mindset">Investor Mindset</span></div></div>
 <div class="post-caption" style="color:#aaa">Is Your Portfolio Really Diversified? - correlation as the enemy of true diversification</div>
 </div>
 
-<!-- POSTED & SCHEDULED -->
+<!-- SCHEDULED -->
 <div class="section-title">Scheduled (This Week)</div>
 <div class="post-card" style="opacity:0.7">
 <div class="post-header"><div><span class="post-date">Fri, April 25</span><span class="post-number"> | Post #4</span></div><div><span class="badge badge-approved">Scheduled</span><span class="pillar pillar-mindset">Investor Mindset</span></div></div>
 <div class="post-caption" style="color:#aaa">Smart investors ask about downside first (scheduled noon MT)</div>
 </div>
 
+<!-- POSTED -->
 <div class="section-title">Posted (Week 1)</div>
 <div class="post-card" style="opacity:0.6">
 <div class="post-header"><div><span class="post-date">Thu, April 24</span><span class="post-number"> | Post #3</span></div><div><span class="badge badge-posted">Posted</span><span class="pillar pillar-education">Education</span></div></div>
@@ -278,14 +207,69 @@ What's the first question you ask about liquidity before committing capital?
 
 <script>
 const WEBHOOK_URL='https://script.google.com/macros/s/AKfycbymuZED3CoXHU0da2KvnlGy3Nbs7u-V8JYVX_D7VJc7Ui3iP2BPh_8oVVzfZykC8fgz/exec';
+const STORAGE_KEY='linkedin_approvals';
 let currentFeedbackPost=null;
+
+function getApprovals(){
+  try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch(e){return{}}
+}
+function saveApproval(n,date,time){
+  var approvals=getApprovals();
+  approvals[n]={status:'approved',date:date,time:time,timestamp:new Date().toISOString()};
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(approvals));
+}
+
+function restoreApprovals(){
+  var approvals=getApprovals();
+  for(var n in approvals){
+    if(approvals[n].status==='approved'){
+      markApproved(n,approvals[n].date,approvals[n].time);
+    }
+  }
+}
+
+function markApproved(n,date,time){
+  var bg=document.getElementById('badge-'+n);
+  if(bg){bg.textContent='Approved';bg.className='badge badge-approved'}
+  var ab=document.getElementById('action-'+n);
+  if(ab){ab.innerHTML='<div class="approved-msg">Approved for '+date+' at '+time+' MT</div>'}
+}
+
 function showToast(m,t){var e=document.getElementById('toast');e.textContent=m;e.className='toast show'+(t==='warn'?' warn':t==='error'?' error':'');setTimeout(function(){e.className='toast'},3500)}
-function approvePost(n){var d=document.getElementById('date-'+n).value,t=document.getElementById('time-'+n).value;if(!d||!t){showToast('Please set date and time before approving.','warn');return}var b=document.getElementById('approve-btn-'+n);b.disabled=true;b.innerHTML='<span class="spinner"></span> Approving...';fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({postNumber:n,action:'approve',date:d,time:t,feedback:''})}).then(function(){var bg=document.getElementById('badge-'+n);if(bg){bg.textContent='Approved';bg.className='badge badge-approved'}var ab=document.getElementById('action-'+n);if(ab){ab.innerHTML='<div style="padding:12px 0;text-align:center;color:#10b981;font-weight:600">Approved for '+d+' at '+t+' MT</div>'}showToast('Post #'+n+' approved and scheduled!','')}).catch(function(){b.disabled=false;b.innerHTML='<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve';showToast('Error. Try again.','error')})}
+
+function approvePost(n){
+  var d=document.getElementById('date-'+n).value,t=document.getElementById('time-'+n).value;
+  if(!d||!t){showToast('Please set date and time before approving.','warn');return}
+  var b=document.getElementById('approve-btn-'+n);
+  b.disabled=true;b.innerHTML='<span class="spinner"></span> Approving...';
+  fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({postNumber:n,action:'approve',date:d,time:t,feedback:''})}).then(function(){
+    saveApproval(n,d,t);
+    markApproved(n,d,t);
+    showToast('Post #'+n+' approved and scheduled!','')
+  }).catch(function(){
+    b.disabled=false;b.innerHTML='<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg> Approve';
+    showToast('Error. Try again.','error')
+  })
+}
+
 function openFeedback(n){currentFeedbackPost=n;document.getElementById('modal-title').textContent='Feedback for Post #'+n;document.getElementById('feedbackText').value='';document.getElementById('feedbackModal').classList.add('active');document.getElementById('feedbackText').focus()}
 function closeFeedback(){document.getElementById('feedbackModal').classList.remove('active');currentFeedbackPost=null}
-function submitFeedback(){var f=document.getElementById('feedbackText').value.trim();if(!f){showToast('Please describe the changes.','warn');return}var n=currentFeedbackPost,d=document.getElementById('date-'+n)?document.getElementById('date-'+n).value:'',t=document.getElementById('time-'+n)?document.getElementById('time-'+n).value:'';closeFeedback();showToast('Submitting feedback...','warn');fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({postNumber:n,action:'needs-changes',date:d,time:t,feedback:f})}).then(function(){var bg=document.getElementById('badge-'+n);if(bg){bg.textContent='Changes Requested';bg.className='badge badge-pending'}showToast('Feedback submitted for Post #'+n,'warn')}).catch(function(){showToast('Error submitting feedback.','error')})}
+function submitFeedback(){
+  var f=document.getElementById('feedbackText').value.trim();
+  if(!f){showToast('Please describe the changes.','warn');return}
+  var n=currentFeedbackPost,d=document.getElementById('date-'+n)?document.getElementById('date-'+n).value:'',t=document.getElementById('time-'+n)?document.getElementById('time-'+n).value:'';
+  closeFeedback();showToast('Submitting feedback...','warn');
+  fetch(WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({postNumber:n,action:'needs-changes',date:d,time:t,feedback:f})}).then(function(){
+    var bg=document.getElementById('badge-'+n);if(bg){bg.textContent='Changes Requested';bg.className='badge badge-pending'}
+    showToast('Feedback submitted for Post #'+n,'warn')
+  }).catch(function(){showToast('Error submitting feedback.','error')})
+}
+
 document.getElementById('feedbackModal').addEventListener('click',function(e){if(e.target===this)closeFeedback()});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeFeedback()});
+
+// Restore approval state on page load
+restoreApprovals();
 </script>
 </body>
 </html>
